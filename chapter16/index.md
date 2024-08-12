@@ -561,7 +561,7 @@ After doing a migration we now have the type `Landmark` in the schema, `Place` h
 We can use the `array_unpack()` method to grab each `str` from all the `important_places` in all the `Place` objects we have so far, and use that to do the inserts:
 
 ```edgeql
-for place_name in select (array_unpack(Place.important_places))
+for place_name in (array_unpack(Place.important_places))
 union (insert Landmark {
   name := place_name
 });
